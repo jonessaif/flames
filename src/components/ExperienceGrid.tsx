@@ -8,7 +8,7 @@ export function ExperienceGrid() {
         <article key={experience.title} className="group relative min-h-[320px] overflow-hidden rounded-lg border border-ivory/10 bg-espresso">
           <Image
             src={experience.image}
-            alt=""
+            alt={`${experience.title} experience at Flames Lucknow`}
             fill
             sizes="(min-width: 768px) 50vw, 100vw"
             className="object-cover transition duration-500 group-hover:scale-105"

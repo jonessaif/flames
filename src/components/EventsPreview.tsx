@@ -61,7 +61,7 @@ function EventPosterCard({
     >
       <Image
         src={event.image}
-        alt=""
+        alt={`${event.title} at Flames Lucknow`}
         fill
         sizes="(min-width: 1024px) 40vw, (min-width: 768px) 50vw, 100vw"
         style={{ objectPosition: event.position ?? "center" }}

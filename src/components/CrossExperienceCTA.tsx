@@ -27,7 +27,7 @@ export function CrossExperienceCTA() {
       <motion.div style={reduceMotion ? undefined : { y: bgY }} className="absolute inset-0 -z-20">
         <Image
           src={crossExperience.image}
-          alt=""
+          alt="Snooker and rooftop lounge evening mood at Flames Lucknow"
           fill
           sizes="100vw"
           className="ken-burns-subtle object-cover opacity-35"
@@ -85,7 +85,7 @@ export function CrossExperienceCTA() {
             >
               <Image
                 src={panel.image}
-                alt=""
+                alt={`${panel.name} ${panel.label} at Flames Lucknow`}
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 style={{ objectPosition: panel.position ?? "center" }}

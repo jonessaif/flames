@@ -36,7 +36,7 @@ export function ReservationCTA() {
       >
         <Image
           src={reservationCta.image}
-          alt=""
+          alt="Rooftop hookah crowd at Flames of Arabia Lucknow"
           fill
           sizes="100vw"
           className="ken-burns-subtle absolute inset-0 -z-20 object-cover opacity-35"

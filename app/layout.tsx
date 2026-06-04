@@ -6,10 +6,9 @@ import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { site } from "@/content/site";
-import { localBusinessJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://flamesofarabia.in"),
+  metadataBase: new URL("https://flamesofarabia.com"),
   title: {
     default: `${site.name} | Lucknow's Social Club for Rooftop, Hookah, Snooker & Gaming`,
     template: `%s | ${site.name}`
@@ -47,10 +46,6 @@ export default function RootLayout({
   return (
     <html lang="en-IN">
       <body className="font-sans antialiased">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
-        />
         <SiteHeader />
         <FlameAmbience />
         <main>{children}</main>

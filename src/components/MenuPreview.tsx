@@ -46,7 +46,7 @@ export function MenuPreview() {
           <Link href={item.href} className="focus-ring group block size-full">
             <Image
               src={item.image}
-              alt=""
+              alt={`${item.title} at Flames Lucknow`}
               fill
               sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
               className="object-cover transition duration-700 group-hover:scale-105"

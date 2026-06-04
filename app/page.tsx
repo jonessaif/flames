@@ -12,19 +12,23 @@ import { ReservationCTA } from "@/components/ReservationCTA";
 import { SectionHeading } from "@/components/SectionHeading";
 import { SocialProof } from "@/components/SocialProof";
 import { homeSections } from "@/content/site";
-import { createPageMetadata, eventJsonLd, faqJsonLd } from "@/lib/seo";
+import { createPageMetadata, eventJsonLd, faqJsonLd, localBusinessJsonLd } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
-  title: "Flames | Lucknow's Social Club for Rooftop, Hookah, Snooker & Gaming",
-  description: "Flames is a two-floor social club in Lucknow with Flames of Arabia rooftop live music and hookah upstairs, and Flames 147 snooker, pool and PS5 gaming downstairs.",
+  title: "Flames Lucknow | Rooftop Lounge, Hookah, Snooker & PS5 Gaming – Gomti Nagar",
+  description: "Flames is Lucknow's social club in Gomti Nagar. Rooftop live music and hookah at Flames of Arabia upstairs. Snooker, pool and PS5 gaming at Flames 147 downstairs. Open 24 hours.",
   path: "/",
   image: "/images/flames-arabia-rooftop-hookah-crowd-new.jpg",
-  imageAlt: "Flames rooftop hookah and social lounge ambience in Lucknow"
+  imageAlt: "Rooftop hookah crowd at Flames of Arabia Lucknow"
 });
 
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(eventJsonLd) }}

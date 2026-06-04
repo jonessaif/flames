@@ -108,8 +108,8 @@ const gamesGallery = [
 ];
 
 export const metadata = createPageMetadata({
-  title: "Flames 147 | Snooker, Pool & PS5 Gaming Lounge - Lucknow",
-  description: "Flames 147 is the downstairs games lounge at Flames Lucknow with snooker at Rs. 6/min, pool from Rs. 4/min, PS5 at Rs. 200/hour, hookah and private cabin bookings.",
+  title: "Flames 147 | Snooker, Pool & PS5 Gaming Lounge – Lucknow",
+  description: "Flames 147 is a 24-hour snooker and gaming lounge in Gomti Nagar, Lucknow. Professional snooker from Rs. 6/min, pool, PS5 gaming, hookah and combo packages. Open all night.",
   path: "/flames-147",
   image: "/images/flames-147-snooker-player-new.jpg",
   imageAlt: "Guest playing snooker at Flames 147 in Lucknow"
@@ -224,7 +224,7 @@ export default function Flames147Page() {
               <article key={moment.title} className="motion-sheen group relative min-h-[360px] overflow-hidden rounded-lg border border-gold/20 bg-espresso transition duration-300 hover:-translate-y-1 hover:border-gold/35">
                 <Image
                   src={moment.image}
-                  alt=""
+                  alt={`${moment.title} at Flames 147 Lucknow`}
                   fill
                   sizes="(min-width: 768px) 50vw, 100vw"
                   className="object-cover transition duration-700 group-hover:scale-105"
@@ -318,7 +318,7 @@ export default function Flames147Page() {
         <div className="depth-shadow relative isolate overflow-hidden rounded-lg border border-gold/20 bg-espresso p-6 md:p-10">
           <Image
             src="/images/flames-147-snooker-table.jpg"
-            alt=""
+            alt="Snooker table at Flames 147 Lucknow"
             fill
             sizes="100vw"
             className="-z-20 object-cover opacity-45"

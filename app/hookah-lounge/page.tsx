@@ -60,11 +60,11 @@ const arabiaGallery = [
 ];
 
 export const metadata = createPageMetadata({
-  title: "Flames of Arabia | Rooftop Hookah Lounge & Live Music - Lucknow",
-  description: "Flames of Arabia is the rooftop lounge at Flames Lucknow, built for premium hookah, live music nights, coffee dates, mocktails and warm evening ambience.",
+  title: "Flames of Arabia | Rooftop Hookah Lounge & Live Music – Lucknow",
+  description: "Flames of Arabia is a rooftop hookah lounge in Gomti Nagar, Lucknow. Live music on weekends, premium hookah at Rs. 600, handcrafted drinks and warm ambience. Open 11 AM to 5 AM.",
   path: "/hookah-lounge",
   image: "/images/flames-arabia-rooftop-hookah-crowd-new.jpg",
-  imageAlt: "Flames of Arabia rooftop hookah lounge with guests and warm lighting"
+  imageAlt: "Rooftop hookah crowd at Flames of Arabia Lucknow"
 });
 
 export default function HookahLoungePage() {
@@ -124,7 +124,7 @@ export default function HookahLoungePage() {
               <article key={moment.title} className="motion-sheen group relative min-h-[360px] overflow-hidden rounded-lg border border-gold/20 bg-espresso transition duration-300 hover:-translate-y-1 hover:border-gold/35">
                 <Image
                   src={moment.image}
-                  alt=""
+                  alt={`${moment.title} at Flames of Arabia Lucknow`}
                   fill
                   sizes="(min-width: 768px) 50vw, 100vw"
                   className="object-cover transition duration-700 group-hover:scale-105"
@@ -191,7 +191,7 @@ export default function HookahLoungePage() {
         <div className="depth-shadow relative isolate overflow-hidden rounded-lg border border-gold/20 bg-espresso p-6 md:p-10">
           <Image
             src="/images/venue-social-night.jpg"
-            alt=""
+            alt="Social rooftop evening at Flames of Arabia Lucknow"
             fill
             sizes="100vw"
             className="-z-20 object-cover opacity-45"

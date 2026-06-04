@@ -13,6 +13,7 @@ type FormState = {
   date: string;
   time: string;
   guests: string;
+  experience: string;
   occasion: string;
   note: string;
 };
@@ -23,9 +24,13 @@ const initialState: FormState = {
   date: "",
   time: "",
   guests: "2",
-  occasion: "Arabia",
+  experience: "Arabia",
+  occasion: "Date Night",
   note: ""
 };
+
+const experienceOptions = ["Arabia", "147", "Both"];
+const occasionOptions = ["Birthday", "Date Night", "Corporate Gathering", "Tournament", "Friends Hangout", "Hookah Session"];
 
 const fieldGroup = {
   hidden: {},
@@ -63,11 +68,12 @@ export function ContactForm() {
       `Date: ${form.date || "Flexible"}`,
       `Time: ${form.time || "Flexible"}`,
       `Guests: ${form.guests}`,
+      `Experience: ${form.experience}`,
       `Occasion: ${form.occasion}`,
       form.note ? `Note: ${form.note}` : ""
     ].filter(Boolean).join("\n");
 
-    const reservationNumber = ["147", "Tournament"].includes(form.occasion)
+    const reservationNumber = form.experience === "147"
       ? site.contacts.flames147.whatsappNumber
       : site.whatsappNumber;
 
@@ -158,10 +164,22 @@ export function ContactForm() {
           Experience
           <select
             className="focus-ring rounded-md border border-ivory/10 bg-charcoal/50 px-4 py-3 text-ivory transition duration-200 focus:border-gold/50 focus:bg-charcoal/70"
+            value={form.experience}
+            onChange={(event) => updateField("experience", event.target.value)}
+          >
+            {experienceOptions.map((value) => (
+              <option key={value} value={value}>{value}</option>
+            ))}
+          </select>
+        </motion.label>
+        <motion.label variants={fieldReveal} className="grid gap-2 text-sm font-medium text-ivory/90">
+          Occasion
+          <select
+            className="focus-ring rounded-md border border-ivory/10 bg-charcoal/50 px-4 py-3 text-ivory transition duration-200 focus:border-gold/50 focus:bg-charcoal/70"
             value={form.occasion}
             onChange={(event) => updateField("occasion", event.target.value)}
           >
-            {["Arabia", "147", "Both", "Birthday", "Date Night", "Corporate Gathering", "Tournament", "Friends Hangout", "Hookah Session"].map((value) => (
+            {occasionOptions.map((value) => (
               <option key={value} value={value}>{value}</option>
             ))}
           </select>

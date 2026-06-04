@@ -39,7 +39,7 @@ export function PageHero({ eyebrow, title, description, image = "/images/flames-
     <section className="relative isolate overflow-hidden pt-[var(--header-height)]">
       <Image
         src={image}
-        alt=""
+        alt={`${eyebrow} at Flames Lucknow`}
         fill
         sizes="100vw"
         priority

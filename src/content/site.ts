@@ -29,7 +29,7 @@ export const site = {
   instagram: "https://www.instagram.com/flames_of_arabia/",
   hours: [
     { day: "Flames 147", time: "Open 24 hours" },
-    { day: "Flames of Arabia rooftop", time: "11 AM - 5 AM" },
+    { day: "Flames of Arabia rooftop", time: "11 AM – 5 AM" },
     { day: "Arabia cafe seating", time: "Available all night" }
   ]
 };

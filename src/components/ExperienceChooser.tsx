@@ -14,7 +14,7 @@ export function ExperienceChooser() {
         >
           <Image
             src={experience.image}
-            alt=""
+            alt={`${experience.name} ${experience.eyebrow} at Flames Lucknow`}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
             style={{ objectPosition: experience.position ?? "center" }}

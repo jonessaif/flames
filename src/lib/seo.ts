@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { events, faqs, site } from "@/content/site";
 
-export const siteUrl = "https://flamesofarabia.in";
+export const siteUrl = "https://flamesofarabia.com";
 
 export function absoluteUrl(path: string) {
+  if (path === "/" || path === "") return siteUrl;
   return new URL(path, siteUrl).toString();
 }
 
@@ -16,24 +17,27 @@ type PageSeo = {
 };
 
 export function createPageMetadata({ title, description, path, image, imageAlt }: PageSeo): Metadata {
+  const canonical = absoluteUrl(path);
+  const ogImage = absoluteUrl(image);
+
   return {
     title: {
       absolute: title
     },
     description,
     alternates: {
-      canonical: path
+      canonical
     },
     openGraph: {
       title,
       description,
-      url: path,
+      url: canonical,
       siteName: site.name,
       locale: "en_IN",
       type: "website",
       images: [
         {
-          url: image,
+          url: ogImage,
           width: 1200,
           height: 630,
           alt: imageAlt
@@ -44,16 +48,16 @@ export function createPageMetadata({ title, description, path, image, imageAlt }
       card: "summary_large_image",
       title,
       description,
-      images: [image]
+      images: [ogImage]
     }
   };
 }
 
 const postalAddress = {
   "@type": "PostalAddress",
-  streetAddress: site.address,
-  addressLocality: "Lucknow",
-  addressRegion: "Uttar Pradesh",
+  streetAddress: "B-1/3, Vishesh Khand 2",
+  addressLocality: "Gomti Nagar",
+  addressRegion: "Lucknow",
   postalCode: "226010",
   addressCountry: "IN"
 };
@@ -64,8 +68,8 @@ const place = {
   address: postalAddress,
   geo: {
     "@type": "GeoCoordinates",
-    latitude: 26.861183,
-    longitude: 81.014289
+    latitude: 26.8623,
+    longitude: 81.0018
   }
 };
 
@@ -73,6 +77,7 @@ const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
 
 const flames147Hours = {
   "@type": "OpeningHoursSpecification",
+  name: "Flames 147",
   dayOfWeek: days,
   opens: "00:00",
   closes: "23:59"
@@ -80,6 +85,7 @@ const flames147Hours = {
 
 const arabiaRooftopHours = {
   "@type": "OpeningHoursSpecification",
+  name: "Flames of Arabia Rooftop",
   dayOfWeek: days,
   opens: "11:00",
   closes: "05:00"
@@ -88,55 +94,21 @@ const arabiaRooftopHours = {
 export const localBusinessJsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "@id": `${siteUrl}/#localbusiness`,
-  name: site.name,
-  alternateName: ["Flames of Arabia", "Flames 147"],
-  description: "Lucknow's Social Club with Flames of Arabia rooftop lounge upstairs, Flames 147 snooker and gaming downstairs, live music, hookah, drinks, food, and reservations.",
+  name: "Flames – Lucknow's Social Club",
   url: siteUrl,
-  logo: site.logo.src,
-  image: [
-    absoluteUrl("/images/flames-arabia-rooftop-hookah-crowd-new.jpg"),
-    absoluteUrl("/images/flames-147-snooker-player-new.jpg")
-  ],
-  telephone: site.phone,
+  logo: "https://flamesofarabia.com/wp-content/uploads/2024/08/3D-Logo-Mockup-Design-4-1024x679.png",
+  image: absoluteUrl("/images/flames-arabia-rooftop-hookah-crowd-new.jpg"),
+  description: "Two-floor social club in Gomti Nagar, Lucknow. Flames of Arabia upstairs for rooftop live music and hookah. Flames 147 downstairs for snooker, pool, PS5 gaming and hookah.",
   address: postalAddress,
   geo: place.geo,
-  priceRange: "Rs. 149 - Rs. 2299",
-  servesCuisine: ["Cafe drinks", "Mocktails", "Lounge food", "Desserts"],
+  telephone: ["+917380779789", "+918090582902"],
   openingHoursSpecification: [
     flames147Hours,
     arabiaRooftopHours
   ],
-  department: [
-    {
-      "@type": "LocalBusiness",
-      name: site.contacts.arabia.label,
-      url: absoluteUrl("/hookah-lounge"),
-      telephone: site.contacts.arabia.phone,
-      address: postalAddress,
-      openingHoursSpecification: [
-        arabiaRooftopHours,
-        {
-          "@type": "OpeningHoursSpecification",
-          dayOfWeek: days,
-          opens: "00:00",
-          closes: "23:59",
-          description: "Cafe seating available all night"
-        }
-      ]
-    },
-    {
-      "@type": "LocalBusiness",
-      name: site.contacts.flames147.label,
-      url: absoluteUrl("/flames-147"),
-      telephone: site.contacts.flames147.phone,
-      address: postalAddress,
-      openingHoursSpecification: [flames147Hours]
-    }
-  ],
   sameAs: [
-    site.contacts.arabia.instagram,
-    site.contacts.flames147.instagram
+    "https://www.instagram.com/flames_of_arabia/",
+    "https://www.instagram.com/flames_147/"
   ]
 };
 

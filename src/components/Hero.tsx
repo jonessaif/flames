@@ -224,7 +224,7 @@ export function Hero() {
                 <div key={panel.name} className="relative overflow-hidden">
                   <Image
                     src={panel.src}
-                    alt=""
+                    alt={`${panel.name} ${panel.details.join(", ")} at Flames Lucknow`}
                     fill
                     sizes="(min-width: 640px) 50vw, 100vw"
                     style={{ objectPosition: panel.position }}
@@ -257,7 +257,7 @@ export function Hero() {
                 <div key={panel.name} className="relative overflow-hidden">
                   <Image
                     src={panel.src}
-                    alt=""
+                    alt={`${panel.name} ${panel.details.join(", ")} at Flames Lucknow`}
                     fill
                     sizes="(min-width: 1024px) 34vw, 100vw"
                     style={{ objectPosition: panel.position }}

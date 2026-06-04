@@ -60,7 +60,7 @@ export function SocialProof() {
                 <div className="relative size-14 shrink-0 overflow-hidden rounded-full border border-gold/25 bg-espresso">
                   <Image
                     src={review.photo}
-                    alt=""
+                    alt={`${review.name} review photo at Flames Lucknow`}
                     fill
                     sizes="3.5rem"
                     className="object-cover"

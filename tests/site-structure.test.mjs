@@ -1,11 +1,20 @@
 import assert from "node:assert/strict";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import test from "node:test";
 
 const root = process.cwd();
 
 const read = (file) => readFileSync(join(root, file), "utf8");
+
+function sourceFiles(dir) {
+  return readdirSync(join(root, dir)).flatMap((entry) => {
+    const relativePath = `${dir}/${entry}`;
+    const absolutePath = join(root, relativePath);
+    if (statSync(absolutePath).isDirectory()) return sourceFiles(relativePath);
+    return /\.(tsx|ts|mjs)$/.test(entry) ? [relativePath] : [];
+  });
+}
 
 test("all requested pages exist", () => {
   [
@@ -29,7 +38,7 @@ test("brand positioning presents Flames as one destination with two experiences"
   assert.match(content, /flames_147/);
   assert.match(content, /80905 82902/);
   assert.match(content, /Flames 147", time: "Open 24 hours/);
-  assert.match(content, /Flames of Arabia rooftop", time: "11 AM - 5 AM/);
+  assert.match(content, /Flames of Arabia rooftop", time: "11 AM – 5 AM/);
   assert.match(content, /Arabia cafe seating", time: "Available all night/);
   assert.match(content, /Public listing snapshot as of June 2026/);
   assert.match(content, /Play Downstairs\./);
@@ -162,6 +171,11 @@ test("conversion and gallery interactions are wired", () => {
   assert.match(gallery, /aria-modal/);
   assert.match(contact, /WhatsApp/);
   assert.match(contact, /site\.contacts\.flames147\.whatsappNumber/);
+  assert.match(contact, /experience: string/);
+  assert.match(contact, /Experience: \$\{form\.experience\}/);
+  assert.match(contact, /Occasion: \$\{form\.occasion\}/);
+  assert.match(contact, /experienceOptions = \["Arabia", "147", "Both"\]/);
+  assert.match(contact, /occasionOptions = \["Birthday", "Date Night", "Corporate Gathering", "Tournament", "Friends Hangout", "Hookah Session"\]/);
   assert.match(reservation, /whatsappMessage/);
   assert.match(reservation, /site\.contacts\.flames147\.whatsappNumber/);
   assert.match(reservation, /href=\{whatsappHref\(whatsappMessage, whatsappNumber\)\}/);
@@ -183,31 +197,62 @@ test("SEO metadata is unique per route with canonical URLs and structured data",
   const contactPage = read("app/contact/page.tsx");
 
   assert.doesNotMatch(layout, /keywords:/);
-  assert.match(layout, /localBusinessJsonLd/);
+  assert.match(layout, /metadataBase: new URL\("https:\/\/flamesofarabia\.com"\)/);
+  assert.doesNotMatch(layout, /localBusinessJsonLd/);
+  assert.match(home, /localBusinessJsonLd/);
   assert.match(seo, /createPageMetadata/);
+  assert.match(seo, /siteUrl = "https:\/\/flamesofarabia\.com"/);
+  assert.match(seo, /const canonical = absoluteUrl\(path\)/);
+  assert.match(seo, /url: canonical/);
+  assert.match(seo, /const ogImage = absoluteUrl\(image\)/);
   assert.match(seo, /GeoCoordinates/);
-  assert.match(seo, /latitude: 26\.861183/);
-  assert.match(seo, /longitude: 81\.014289/);
+  assert.match(seo, /latitude: 26\.8623/);
+  assert.match(seo, /longitude: 81\.0018/);
+  assert.match(seo, /Flames – Lucknow's Social Club/);
+  assert.match(seo, /https:\/\/flamesofarabia\.com\/wp-content\/uploads\/2024\/08\/3D-Logo-Mockup-Design-4-1024x679\.png/);
+  assert.match(seo, /image: absoluteUrl\("\/images\/flames-arabia-rooftop-hookah-crowd-new\.jpg"\)/);
+  assert.match(seo, /telephone: \["\+917380779789", "\+918090582902"\]/);
+  assert.match(seo, /streetAddress: "B-1\/3, Vishesh Khand 2"/);
+  assert.match(seo, /addressLocality: "Gomti Nagar"/);
+  assert.match(seo, /addressRegion: "Lucknow"/);
   assert.match(seo, /opens: "00:00"/);
   assert.match(seo, /closes: "23:59"/);
   assert.match(seo, /opens: "11:00"/);
   assert.match(seo, /closes: "05:00"/);
-  assert.match(seo, /Cafe seating available all night/);
   assert.match(seo, /schemaStartTimes/);
   assert.match(seo, /"8 PM": "20:00"/);
   assert.match(seo, /eventJsonLd/);
   assert.match(seo, /FAQPage/);
+  assert.match(home, /Flames Lucknow \| Rooftop Lounge, Hookah, Snooker & PS5 Gaming – Gomti Nagar/);
+  assert.match(home, /Open 24 hours/);
   assert.match(home, /path: "\/"/);
-  assert.match(arabia, /Rooftop Hookah Lounge & Live Music - Lucknow/);
+  assert.match(arabia, /Flames of Arabia \| Rooftop Hookah Lounge & Live Music – Lucknow/);
+  assert.match(arabia, /premium hookah at Rs\. 600/);
+  assert.match(arabia, /Open 11 AM to 5 AM/);
   assert.match(arabia, /path: "\/hookah-lounge"/);
-  assert.match(games, /Snooker, Pool & PS5 Gaming Lounge - Lucknow/);
+  assert.match(games, /Flames 147 \| Snooker, Pool & PS5 Gaming Lounge – Lucknow/);
+  assert.match(games, /24-hour snooker and gaming lounge/);
+  assert.match(games, /Open all night/);
   assert.match(games, /path: "\/flames-147"/);
   assert.match(menu, /path: "\/menu"/);
   assert.match(gallery, /path: "\/gallery"/);
   assert.match(contactPage, /path: "\/contact"/);
+  [layout, seo, home, arabia, games, menu, gallery, contactPage].forEach((fileContent) => {
+    assert.doesNotMatch(fileContent, /flamesofarabia\.in/);
+  });
   assert.notEqual(arabia.match(/image: "([^"]+)"/)?.[1], games.match(/image: "([^"]+)"/)?.[1]);
   assert.match(read("app/sitemap.ts"), /\/flames-147/);
+  assert.match(read("app/sitemap.ts"), /\/hookah-lounge/);
+  assert.match(read("app/sitemap.ts"), /\/menu/);
+  assert.match(read("app/sitemap.ts"), /\/contact/);
+  assert.match(read("app/sitemap.ts"), /\/gallery/);
   assert.match(read("app/robots.ts"), /sitemap/);
+});
+
+test("images have descriptive alt text instead of empty accessibility labels", () => {
+  [...sourceFiles("app"), ...sourceFiles("src")].forEach((file) => {
+    assert.doesNotMatch(read(file), /alt=""/, file);
+  });
 });
 
 test("homepage uses immersive scroll depth primitives", () => {

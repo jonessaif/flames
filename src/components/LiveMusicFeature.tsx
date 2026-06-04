@@ -9,7 +9,7 @@ export function LiveMusicFeature() {
     <section className="relative isolate overflow-hidden border-y border-ivory/10 bg-ink py-16 md:py-24">
       <Image
         src={liveMusicFeature.image}
-        alt=""
+        alt="Live music night at Flames of Arabia Lucknow"
         fill
         sizes="100vw"
         className="absolute inset-0 -z-20 object-cover opacity-40"
