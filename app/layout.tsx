@@ -6,31 +6,7 @@ import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { site } from "@/content/site";
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: site.name,
-  description: "Lucknow's Social Club with Flames of Arabia rooftop lounge upstairs, Flames 147 snooker and gaming downstairs, live music, hookah, drinks, food, and reservations.",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: site.address,
-    addressLocality: "Lucknow",
-    addressRegion: "Uttar Pradesh",
-    addressCountry: "IN"
-  },
-  telephone: site.phone,
-  logo: site.logo.src,
-  servesCuisine: ["Cafe drinks", "Mocktails", "Lounge food", "Desserts"],
-  priceRange: "Rs. 149 - Rs. 899",
-  image: "https://flamesofarabia.in/images/flames-arabia-rooftop-hookah-crowd-new.jpg",
-  url: "https://flamesofarabia.in",
-  openingHours: "Mo-Su 00:00-23:59",
-  sameAs: [
-    site.contacts.arabia.instagram,
-    site.contacts.flames147.instagram
-  ]
-};
+import { localBusinessJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://flamesofarabia.in"),
@@ -39,17 +15,6 @@ export const metadata: Metadata = {
     template: `%s | ${site.name}`
   },
   description: "Flames is Lucknow's Social Club for rooftop live music, premium hookah, snooker, pool, PS5 gaming, handcrafted drinks, and unforgettable nights.",
-  keywords: [
-    "Flames Lucknow",
-    "Flames of Arabia Lucknow",
-    "Flames 147 Lucknow",
-    "rooftop cafe Lucknow",
-    "hookah lounge Lucknow",
-    "snooker Lucknow",
-    "PS5 gaming Lucknow",
-    "live music Lucknow",
-    "date night Lucknow"
-  ],
   openGraph: {
     title: `${site.name} | Lucknow's Social Club`,
     description: "Two floors: rooftop live music and hookah upstairs, snooker, pool and PS5 gaming downstairs.",
@@ -84,7 +49,7 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
         <SiteHeader />
         <FlameAmbience />

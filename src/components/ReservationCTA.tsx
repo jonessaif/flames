@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import { ButtonLink } from "@/components/ButtonLink";
-import { reservationCta } from "@/content/site";
+import { reservationCta, site } from "@/content/site";
 import { usePointerTilt } from "@/components/usePointerTilt";
 import { whatsappHref } from "@/lib/utils";
 
@@ -25,6 +25,7 @@ export function ReservationCTA() {
       "Planning an evening with friends?"
     ].join("\n");
   }, [groupSize, occasion, selectedChoice.message]);
+  const whatsappNumber = experience === "147" ? site.contacts.flames147.whatsappNumber : site.whatsappNumber;
 
   return (
     <section className="container-shell py-16 md:py-24">
@@ -118,15 +119,15 @@ export function ReservationCTA() {
             </div>
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/contact" icon={<CalendarDays size={18} aria-hidden />}>
+              <ButtonLink href={whatsappHref(whatsappMessage, whatsappNumber)} icon={<CalendarDays size={18} aria-hidden />}>
                 Reserve Table
               </ButtonLink>
               <ButtonLink
-                href={whatsappHref(whatsappMessage)}
+                href="/contact"
                 variant="secondary"
                 icon={<MessageCircle size={18} aria-hidden />}
               >
-                WhatsApp
+                Contact Form
               </ButtonLink>
             </div>
           </div>

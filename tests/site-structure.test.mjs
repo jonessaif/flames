@@ -15,7 +15,9 @@ test("all requested pages exist", () => {
     "app/flames-147/page.tsx",
     "app/gallery/page.tsx",
     "app/about/page.tsx",
-    "app/contact/page.tsx"
+    "app/contact/page.tsx",
+    "app/sitemap.ts",
+    "app/robots.ts"
   ].forEach((file) => assert.equal(existsSync(join(root, file)), true, file));
 });
 
@@ -26,7 +28,10 @@ test("brand positioning presents Flames as one destination with two experiences"
   assert.match(content, /flames_of_arabia/);
   assert.match(content, /flames_147/);
   assert.match(content, /80905 82902/);
-  assert.match(content, /Open 24 hours/);
+  assert.match(content, /Flames 147", time: "Open 24 hours/);
+  assert.match(content, /Flames of Arabia rooftop", time: "11 AM - 5 AM/);
+  assert.match(content, /Arabia cafe seating", time: "Available all night/);
+  assert.match(content, /Public listing snapshot as of June 2026/);
   assert.match(content, /Play Downstairs\./);
   assert.match(content, /Relax Upstairs\./);
   assert.match(content, /Flames of Arabia/);
@@ -103,13 +108,17 @@ test("homepage is a two-experience destination before menu preview", () => {
   assert.ok(home.indexOf("<SocialProof />") < home.indexOf("<EventsPreview />"));
   assert.ok(home.indexOf("<EventsPreview />") < home.indexOf("<CrossExperienceCTA />"));
   assert.ok(home.indexOf("<CrossExperienceCTA />") < home.indexOf("<MenuPreview />"));
-  assert.ok(home.indexOf("<MenuPreview />") < home.indexOf("<ReservationCTA />"));
+  assert.ok(home.indexOf("<MenuPreview />") < home.indexOf("<FAQSection />"));
+  assert.ok(home.indexOf("<FAQSection />") < home.indexOf("<ReservationCTA />"));
   assert.match(home, /ExperienceChooser/);
   assert.match(home, /SocialProof/);
   assert.match(home, /EventsPreview/);
   assert.match(home, /CrossExperienceCTA/);
   assert.match(home, /MenuPreview/);
+  assert.match(home, /FAQSection/);
   assert.match(home, /ReservationCTA/);
+  assert.match(home, /eventJsonLd/);
+  assert.match(home, /faqJsonLd/);
   assert.match(content, /Choose Your Experience/);
   assert.match(content, /What Makes Flames Different/);
   assert.match(content, /Real Moments/);
@@ -144,6 +153,7 @@ test("conversion and gallery interactions are wired", () => {
   const floating = read("src/components/FloatingWhatsApp.tsx");
   const gallery = read("src/components/GalleryLightbox.tsx");
   const contact = read("src/components/ContactForm.tsx");
+  const reservation = read("src/components/ReservationCTA.tsx");
 
   assert.match(header, /Reserve/);
   assert.match(header, /site\.logo\.src/);
@@ -152,10 +162,52 @@ test("conversion and gallery interactions are wired", () => {
   assert.match(gallery, /aria-modal/);
   assert.match(contact, /WhatsApp/);
   assert.match(contact, /site\.contacts\.flames147\.whatsappNumber/);
+  assert.match(reservation, /whatsappMessage/);
+  assert.match(reservation, /site\.contacts\.flames147\.whatsappNumber/);
+  assert.match(reservation, /href=\{whatsappHref\(whatsappMessage, whatsappNumber\)\}/);
   assert.match(read("app/contact/page.tsx"), /site\.contacts\.flames147\.phone/);
   assert.match(read("src/components/SiteFooter.tsx"), /Flames 147 Instagram/);
   assert.match(read("src/components/LocationHours.tsx"), /site\.contacts\.flames147\.phone/);
-  assert.match(read("app/layout.tsx"), /openingHours: "Mo-Su 00:00-23:59"/);
+  assert.match(read("src/components/SocialProof.tsx"), /socialProof\.note/);
+  assert.match(read("src/lib/seo.ts"), /openingHoursSpecification/);
+});
+
+test("SEO metadata is unique per route with canonical URLs and structured data", () => {
+  const layout = read("app/layout.tsx");
+  const seo = read("src/lib/seo.ts");
+  const home = read("app/page.tsx");
+  const arabia = read("app/hookah-lounge/page.tsx");
+  const games = read("app/flames-147/page.tsx");
+  const menu = read("app/menu/page.tsx");
+  const gallery = read("app/gallery/page.tsx");
+  const contactPage = read("app/contact/page.tsx");
+
+  assert.doesNotMatch(layout, /keywords:/);
+  assert.match(layout, /localBusinessJsonLd/);
+  assert.match(seo, /createPageMetadata/);
+  assert.match(seo, /GeoCoordinates/);
+  assert.match(seo, /latitude: 26\.861183/);
+  assert.match(seo, /longitude: 81\.014289/);
+  assert.match(seo, /opens: "00:00"/);
+  assert.match(seo, /closes: "23:59"/);
+  assert.match(seo, /opens: "11:00"/);
+  assert.match(seo, /closes: "05:00"/);
+  assert.match(seo, /Cafe seating available all night/);
+  assert.match(seo, /schemaStartTimes/);
+  assert.match(seo, /"8 PM": "20:00"/);
+  assert.match(seo, /eventJsonLd/);
+  assert.match(seo, /FAQPage/);
+  assert.match(home, /path: "\/"/);
+  assert.match(arabia, /Rooftop Hookah Lounge & Live Music - Lucknow/);
+  assert.match(arabia, /path: "\/hookah-lounge"/);
+  assert.match(games, /Snooker, Pool & PS5 Gaming Lounge - Lucknow/);
+  assert.match(games, /path: "\/flames-147"/);
+  assert.match(menu, /path: "\/menu"/);
+  assert.match(gallery, /path: "\/gallery"/);
+  assert.match(contactPage, /path: "\/contact"/);
+  assert.notEqual(arabia.match(/image: "([^"]+)"/)?.[1], games.match(/image: "([^"]+)"/)?.[1]);
+  assert.match(read("app/sitemap.ts"), /\/flames-147/);
+  assert.match(read("app/robots.ts"), /sitemap/);
 });
 
 test("homepage uses immersive scroll depth primitives", () => {

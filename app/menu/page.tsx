@@ -1,12 +1,15 @@
-import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { MenuAccordion } from "@/components/MenuAccordion";
 import { SectionHeading } from "@/components/SectionHeading";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Menu",
-  description: "Explore the Flames menu for both floors: Arabia platter combos, Flames 147 snooker combos, hookah, coffee, mocktails, comfort food, and desserts."
-};
+export const metadata = createPageMetadata({
+  title: "Flames Menu | Hookah, Combos, Coffee, Mocktails & Food - Lucknow",
+  description: "Browse the Flames Lucknow menu with Arabia platter hookah combos, Flames 147 snooker combos, Rs. 600 hookah, coffee, mocktails, comfort food and desserts.",
+  path: "/menu",
+  image: "/images/flames-147-snooker-player-new.jpg",
+  imageAlt: "Flames combo menu experience with games, hookah and drinks"
+});
 
 export default function MenuPage() {
   return (

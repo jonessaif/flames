@@ -58,7 +58,13 @@ export function SiteFooter() {
           </a>
           <p className="flex items-start gap-3">
             <Clock className="mt-0.5 text-gold" size={18} aria-hidden />
-            <span>{site.hours[0].day}: {site.hours[0].time}<br />{site.hours[1].day}: {site.hours[1].time}</span>
+            <span>
+              {site.hours.map((row) => (
+                <span key={row.day} className="block">
+                  {row.day}: {row.time}
+                </span>
+              ))}
+            </span>
           </p>
           <a className="focus-ring flex items-center gap-3 rounded-md transition hover:text-ivory" href={site.contacts.arabia.instagram} target="_blank" rel="noreferrer">
             <Instagram className="text-gold" size={18} aria-hidden />

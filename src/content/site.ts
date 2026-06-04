@@ -28,8 +28,9 @@ export const site = {
   defaultWhatsAppMessage: "Hi Flames, I want to reserve my evening.",
   instagram: "https://www.instagram.com/flames_of_arabia/",
   hours: [
-    { day: "Daily", time: "Open 24 hours" },
-    { day: "Arabia + 147", time: "Rooftop, games, hookah and cafe service all day" }
+    { day: "Flames 147", time: "Open 24 hours" },
+    { day: "Flames of Arabia rooftop", time: "11 AM - 5 AM" },
+    { day: "Arabia cafe seating", time: "Available all night" }
   ]
 };
 
@@ -279,7 +280,7 @@ export const galleryImages = [
 export const events = [
   {
     title: "Friday Acoustic Night",
-    date: "Friday",
+    date: "Every Friday",
     time: "8 PM",
     meta: "Arabia rooftop",
     description: "Rooftop music for slow tables.",
@@ -290,7 +291,7 @@ export const events = [
   },
   {
     title: "Weekend Snooker Tournament",
-    date: "Saturday",
+    date: "Every Saturday",
     time: "6 PM",
     meta: "Flames 147",
     description: "Frames, rivalries and weekend energy.",
@@ -301,7 +302,7 @@ export const events = [
   },
   {
     title: "PS5 FIFA Challenge",
-    date: "Sunday",
+    date: "Every Sunday",
     time: "5 PM",
     meta: "Flames 147",
     description: "FIFA, groups and late-night snacks.",
@@ -312,7 +313,7 @@ export const events = [
   },
   {
     title: "Couples Evening",
-    date: "Thursday",
+    date: "Every Thursday",
     time: "7 PM",
     meta: "Arabia + 147",
     description: "Rooftop ambience, games and dessert.",
@@ -404,7 +405,7 @@ export const socialProof = {
   description: "Real reviews, rooftop photos and games-floor moments from people who turned one plan into a full night at Flames.",
   averageRating: "4.5",
   reviewCount: "127 Google reviews",
-  note: "Public listing snapshot; update from the Google Business Profile before final launch.",
+  note: "Public listing snapshot as of June 2026; update from the Google Business Profile before final launch.",
   userPhotos: [
     "/images/flames-arabia-rooftop-hookah-crowd-new.jpg",
     "/images/flames-147-snooker-player-new.jpg",
@@ -412,6 +413,33 @@ export const socialProof = {
     "/images/flames-arabia-rooftop-hookah-table-new.jpg"
   ]
 };
+
+export const faqs = [
+  {
+    question: "Is hookah available at Flames 147?",
+    answer: "Yes. Hookah is available at Flames 147 downstairs and Flames of Arabia upstairs. All available hookah flavours are priced at Rs. 600."
+  },
+  {
+    question: "What is the snooker rate at Flames 147 in Lucknow?",
+    answer: "Flames 147 pricing is Rs. 4 per minute for Indian Pool, Rs. 5 per minute for American Pool, Rs. 6 per minute for Snooker, and Rs. 200 per hour for PS5."
+  },
+  {
+    question: "Does Flames 147 have a private cabin?",
+    answer: "Yes. Flames 147 has a private snooker cabin for guests who want more privacy, focus, or a quieter small-group games session."
+  },
+  {
+    question: "Is Flames open 24 hours?",
+    answer: "Flames 147 is open 24 hours. Flames of Arabia rooftop runs from 11 AM to 5 AM, and Arabia cafe seating is available all night. For live music schedules or larger group plans, WhatsApp before arriving."
+  },
+  {
+    question: "Where is Flames located in Lucknow?",
+    answer: "Flames is at B-1/3, Vishesh Khand 2, Gomti Nagar, Lucknow, Uttar Pradesh 226010."
+  },
+  {
+    question: "Is live music available at Flames of Arabia?",
+    answer: "Yes. Flames of Arabia hosts live music nights on the rooftop, with acoustic and social evening events. Check WhatsApp for the current weekend schedule."
+  }
+];
 
 export const menuPreview = [
   {

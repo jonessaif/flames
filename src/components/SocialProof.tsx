@@ -27,6 +27,7 @@ export function SocialProof() {
               <p className="mt-5 font-display text-6xl leading-none text-ivory">{socialProof.averageRating}</p>
               <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-gold">Average rating</p>
               <p className="mt-3 text-sm leading-6 text-smoke">{socialProof.reviewCount}</p>
+              <p className="mt-3 text-xs leading-5 text-smoke/70">{socialProof.note}</p>
             </div>
 
             <div className="grid grid-cols-2 gap-3">

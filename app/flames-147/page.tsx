@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { ArrowRight, CalendarDays, Check, Flame, Gamepad2, MessageCircle, Trophy } from "@/components/Icons";
 import Image from "next/image";
 import { AnimatedSection } from "@/components/AnimatedSection";
@@ -6,6 +5,7 @@ import { ButtonLink } from "@/components/ButtonLink";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { flames147Highlights, site } from "@/content/site";
+import { createPageMetadata } from "@/lib/seo";
 import { whatsappHref } from "@/lib/utils";
 
 const playStyles = [
@@ -107,10 +107,13 @@ const gamesGallery = [
   "/images/flames-147-reception-new.jpg"
 ];
 
-export const metadata: Metadata = {
-  title: "Flames 147",
-  description: "Explore Flames 147 in Lucknow: professional snooker, pool tables, PS5 gaming, hookah, drinks, and food for long social nights."
-};
+export const metadata = createPageMetadata({
+  title: "Flames 147 | Snooker, Pool & PS5 Gaming Lounge - Lucknow",
+  description: "Flames 147 is the downstairs games lounge at Flames Lucknow with snooker at Rs. 6/min, pool from Rs. 4/min, PS5 at Rs. 200/hour, hookah and private cabin bookings.",
+  path: "/flames-147",
+  image: "/images/flames-147-snooker-player-new.jpg",
+  imageAlt: "Guest playing snooker at Flames 147 in Lucknow"
+});
 
 export default function Flames147Page() {
   return (

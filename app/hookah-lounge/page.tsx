@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { ArrowRight, CalendarDays, Check, Flame, MessageCircle, Music2, Sparkles } from "@/components/Icons";
 import Image from "next/image";
 import { AnimatedSection } from "@/components/AnimatedSection";
@@ -6,6 +5,7 @@ import { ButtonLink } from "@/components/ButtonLink";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { hookahHighlights } from "@/content/site";
+import { createPageMetadata } from "@/lib/seo";
 import { whatsappHref } from "@/lib/utils";
 
 const arabiaMoments = [
@@ -59,10 +59,13 @@ const arabiaGallery = [
   "/images/venue-rooftop-ambience.jpg"
 ];
 
-export const metadata: Metadata = {
-  title: "Flames of Arabia",
-  description: "Explore Flames of Arabia in Lucknow: rooftop lounge, live music, premium hookah, handcrafted drinks, and an upstairs evening atmosphere."
-};
+export const metadata = createPageMetadata({
+  title: "Flames of Arabia | Rooftop Hookah Lounge & Live Music - Lucknow",
+  description: "Flames of Arabia is the rooftop lounge at Flames Lucknow, built for premium hookah, live music nights, coffee dates, mocktails and warm evening ambience.",
+  path: "/hookah-lounge",
+  image: "/images/flames-arabia-rooftop-hookah-crowd-new.jpg",
+  imageAlt: "Flames of Arabia rooftop hookah lounge with guests and warm lighting"
+});
 
 export default function HookahLoungePage() {
   return (
@@ -86,7 +89,7 @@ export default function HookahLoungePage() {
           <SectionHeading
             eyebrow="Premium sessions"
             title="Built for rooftop nights."
-            description="Hookah is not an add-on here. Arabia centers the upstairs experience around smooth sessions, live music, comfortable seating and ambience that photographs beautifully."
+            description="Hookah is not an add-on here. Arabia centers the upstairs experience around Rs. 600 hookah sessions, rooftop seating, weekend live music, coffee dates and mocktails."
             className="mb-6"
           />
           <ul className="grid gap-3">

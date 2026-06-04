@@ -1,15 +1,18 @@
-import type { Metadata } from "next";
 import { Flame, Gem, Music2 } from "@/components/Icons";
 import Image from "next/image";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { aboutPillars } from "@/content/site";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About",
-  description: "Learn about Flames, a two-floor social destination in Lucknow with Flames of Arabia and Flames 147."
-};
+export const metadata = createPageMetadata({
+  title: "About Flames | Two-Floor Social Club in Gomti Nagar, Lucknow",
+  description: "Learn about Flames in Lucknow: Flames of Arabia rooftop lounge upstairs and Flames 147 snooker, pool, PS5 gaming and hookah downstairs.",
+  path: "/about",
+  image: "/images/venue-rooftop-ambience.jpg",
+  imageAlt: "Flames rooftop ambience and warm lounge lighting in Lucknow"
+});
 
 const icons = [Gem, Music2, Flame];
 

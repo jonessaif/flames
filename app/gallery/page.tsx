@@ -1,12 +1,15 @@
-import type { Metadata } from "next";
 import { GalleryLightbox } from "@/components/GalleryLightbox";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Gallery",
-  description: "View rooftop evenings, hookah sessions, Flames 147 games-lounge energy, drinks, friend groups, and date-night ambience at Flames in Lucknow."
-};
+export const metadata = createPageMetadata({
+  title: "Flames Gallery | Rooftop, Hookah, Snooker & Nightlife Photos - Lucknow",
+  description: "See real Flames Lucknow moments: rooftop seating, hookah sessions, live music nights, Flames 147 snooker, PS5 gaming, friend groups and date-night ambience.",
+  path: "/gallery",
+  image: "/images/flames-arabia-rooftop-hookah-crowd-new.jpg",
+  imageAlt: "Guests enjoying hookah and rooftop ambience at Flames Lucknow"
+});
 
 export default function GalleryPage() {
   return (

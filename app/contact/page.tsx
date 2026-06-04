@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Instagram, MessageCircle, Phone } from "@/components/Icons";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { ButtonLink } from "@/components/ButtonLink";
@@ -7,12 +6,16 @@ import { LocationHours } from "@/components/LocationHours";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { site } from "@/content/site";
+import { createPageMetadata } from "@/lib/seo";
 import { whatsappHref } from "@/lib/utils";
 
-export const metadata: Metadata = {
-  title: "Contact & Reserve",
-  description: "Reserve Arabia, Flames 147, or both experiences at Flames in Lucknow via WhatsApp, phone, or the reservation form."
-};
+export const metadata = createPageMetadata({
+  title: "Reserve Flames Lucknow | Arabia Rooftop & Flames 147 Bookings",
+  description: "Reserve Flames of Arabia rooftop, Flames 147 snooker and PS5 gaming, private cabin bookings, hookah sessions or both floors at Flames Lucknow.",
+  path: "/contact",
+  image: "/images/venue-rooftop-seating.jpg",
+  imageAlt: "Rooftop seating at Flames Lucknow for reservations and evening plans"
+});
 
 export default function ContactPage() {
   return (

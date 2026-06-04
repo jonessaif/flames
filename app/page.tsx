@@ -3,6 +3,7 @@ import { ButtonLink } from "@/components/ButtonLink";
 import { CrossExperienceCTA } from "@/components/CrossExperienceCTA";
 import { EventsPreview } from "@/components/EventsPreview";
 import { ExperienceChooser } from "@/components/ExperienceChooser";
+import { FAQSection } from "@/components/FAQSection";
 import { GalleryPreview } from "@/components/GalleryPreview";
 import { Hero } from "@/components/Hero";
 import { ImmersiveStoryScroller } from "@/components/ImmersiveStoryScroller";
@@ -11,10 +12,27 @@ import { ReservationCTA } from "@/components/ReservationCTA";
 import { SectionHeading } from "@/components/SectionHeading";
 import { SocialProof } from "@/components/SocialProof";
 import { homeSections } from "@/content/site";
+import { createPageMetadata, eventJsonLd, faqJsonLd } from "@/lib/seo";
+
+export const metadata = createPageMetadata({
+  title: "Flames | Lucknow's Social Club for Rooftop, Hookah, Snooker & Gaming",
+  description: "Flames is a two-floor social club in Lucknow with Flames of Arabia rooftop live music and hookah upstairs, and Flames 147 snooker, pool and PS5 gaming downstairs.",
+  path: "/",
+  image: "/images/flames-arabia-rooftop-hookah-crowd-new.jpg",
+  imageAlt: "Flames rooftop hookah and social lounge ambience in Lucknow"
+});
 
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(eventJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <Hero />
       <ImmersiveStoryScroller />
 
@@ -63,6 +81,8 @@ export default function HomePage() {
           <MenuPreview />
         </div>
       </AnimatedSection>
+
+      <FAQSection />
 
       <ReservationCTA />
     </>
