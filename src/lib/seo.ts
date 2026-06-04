@@ -96,7 +96,7 @@ export const localBusinessJsonLd = {
   "@type": "LocalBusiness",
   name: "Flames – Lucknow's Social Club",
   url: siteUrl,
-  logo: "https://flamesofarabia.com/wp-content/uploads/2024/08/3D-Logo-Mockup-Design-4-1024x679.png",
+  logo: absoluteUrl("/images/flames-logo.jpg"),
   image: absoluteUrl("/images/flames-arabia-rooftop-hookah-crowd-new.jpg"),
   description: "Two-floor social club in Gomti Nagar, Lucknow. Flames of Arabia upstairs for rooftop live music and hookah. Flames 147 downstairs for snooker, pool, PS5 gaming and hookah.",
   address: postalAddress,

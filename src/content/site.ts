@@ -6,7 +6,7 @@ export const site = {
   phone: "+91 73807 79789",
   whatsappNumber: "917380779789",
   logo: {
-    src: "https://flamesofarabia.com/wp-content/uploads/2024/08/3D-Logo-Mockup-Design-4-1024x679.png",
+    src: "/images/flames-logo.jpg",
     alt: "Flames of Arabia logo"
   },
   contacts: {

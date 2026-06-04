@@ -33,7 +33,7 @@ test("all requested pages exist", () => {
 test("brand positioning presents Flames as one destination with two experiences", () => {
   const content = read("src/content/site.ts");
   assert.match(content, /Lucknow's Social Club/);
-  assert.match(content, /3D-Logo-Mockup-Design-4-1024x679\.png/);
+  assert.match(content, /\/images\/flames-logo\.jpg/);
   assert.match(content, /flames_of_arabia/);
   assert.match(content, /flames_147/);
   assert.match(content, /80905 82902/);
@@ -209,7 +209,7 @@ test("SEO metadata is unique per route with canonical URLs and structured data",
   assert.match(seo, /latitude: 26\.8623/);
   assert.match(seo, /longitude: 81\.0018/);
   assert.match(seo, /Flames – Lucknow's Social Club/);
-  assert.match(seo, /https:\/\/flamesofarabia\.com\/wp-content\/uploads\/2024\/08\/3D-Logo-Mockup-Design-4-1024x679\.png/);
+  assert.match(seo, /logo: absoluteUrl\("\/images\/flames-logo\.jpg"\)/);
   assert.match(seo, /image: absoluteUrl\("\/images\/flames-arabia-rooftop-hookah-crowd-new\.jpg"\)/);
   assert.match(seo, /telephone: \["\+917380779789", "\+918090582902"\]/);
   assert.match(seo, /streetAddress: "B-1\/3, Vishesh Khand 2"/);
