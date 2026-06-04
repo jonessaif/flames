@@ -30,6 +30,22 @@ test("all requested pages exist", () => {
   ].forEach((file) => assert.equal(existsSync(join(root, file)), true, file));
 });
 
+test("legacy URLs redirect to current destination pages", () => {
+  const config = read("next.config.mjs");
+
+  assert.match(config, /async redirects\(\)/);
+  assert.match(config, /skipTrailingSlashRedirect: true/);
+  assert.match(config, /source: "\/about"/);
+  assert.match(config, /destination: "\/"/);
+  assert.match(config, /source: "\/about\/"/);
+  assert.match(config, /source: "\/contact\/"/);
+  assert.match(config, /destination: "\/contact"/);
+  assert.match(config, /source: "\/menu-arabian-restaurant-lucknow"/);
+  assert.match(config, /destination: "\/menu"/);
+  assert.match(config, /source: "\/reservations"/);
+  assert.doesNotMatch(config, /source: "\/contact",\s*destination: "\/contact"/s);
+});
+
 test("brand positioning presents Flames as one destination with two experiences", () => {
   const content = read("src/content/site.ts");
   assert.match(content, /Lucknow's Social Club/);
