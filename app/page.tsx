@@ -12,7 +12,9 @@ import { ReservationCTA } from "@/components/ReservationCTA";
 import { SectionHeading } from "@/components/SectionHeading";
 import { SocialProof } from "@/components/SocialProof";
 import { homeSections } from "@/content/site";
-import { createPageMetadata, eventJsonLd, faqJsonLd, localBusinessJsonLd } from "@/lib/seo";
+import { createEventsJsonLd, createPageMetadata, faqJsonLd, localBusinessJsonLd } from "@/lib/seo";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = createPageMetadata({
   title: "Flames Lucknow | Rooftop Lounge, Hookah, Snooker & PS5 Gaming – Gomti Nagar",
@@ -23,6 +25,8 @@ export const metadata = createPageMetadata({
 });
 
 export default function HomePage() {
+  const eventJsonLd = createEventsJsonLd();
+
   return (
     <>
       <script
